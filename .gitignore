@@ -1,0 +1,8 @@
+# vs code config
+/.vscode
+
+# Dependency directories
+node_modules/
+
+# Build
+dist
