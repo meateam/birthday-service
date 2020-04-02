@@ -14,19 +14,40 @@ process.on('unhandledRejection', (err) => {
   process.exit(1);
 });
 
-(async () => {
-  //   await mongoose.connect(config.db.connectionString, {
-  //     useNewUrlParser: true,
-  //     useFindAndModify: false,
-  //   });
+const connectToMongo = async () => {
+  log(
+    SeverityLevel.INFO,
+    `[MongoDB] trying to mongo server:  ${config.db.connectionString}`,
+    'connectToMongo',
+  );
+  try {
+    await mongoose.connect(config.db.connectionString, {
+      useCreateIndex: true,
+      useNewUrlParser: true,
+      useFindAndModify: false,
+    });
+  } catch (err) {
+    log(
+      SeverityLevel.ERROR,
+      `did not connect to ${config.db.connectionString}. error: ${err}`,
+      'connectToMongo',
+    );
+    return;
+  }
 
-  //   console.log(`[MongoDB] connected to port ${config.db.port}`);
-  console.log('Starting service');
+  log(
+    SeverityLevel.INFO,
+    `successfully connected: ${config.db.connectionString}`,
+    'connectToMongo',
+  );
+};
+
+(async () => {
+  await connectToMongo();
   const server: Server = Server.bootstrap();
   server.listen();
 
   server.app.on('close', () => {
-    // mongoose.disconnect();
     log(SeverityLevel.INFO, `Server closed`, 'Server');
   });
 })();

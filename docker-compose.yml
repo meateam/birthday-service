@@ -1,0 +1,19 @@
+version: '3'
+services:
+  birthday-service:
+    image: birthday-service
+    ports:
+      - '3000:3000'
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      DB_SERVER: mongodb://mongo-server:27017
+      RPC_PORT: '55555'
+      RPC_HOST: '0.0.0.0'
+    depends_on:
+      - mongo-server
+  mongo-server:
+    image: 'mongo:latest'
+    ports:
+      - '27017:27017'
