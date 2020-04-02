@@ -4,6 +4,8 @@ import * as cookieParser from 'cookie-parser';
 import config from './config';
 import { SeverityLevel } from './utils/logger/severityLevel';
 import { log } from './utils/logger/logger';
+import addHeaders from './middlewares/addHeaders.middleware';
+import * as morgan from 'morgan';
 
 export class Server {
   public app: express.Application;
@@ -24,8 +26,9 @@ export class Server {
     this.app.listen(config.server.port, () => {
       log(
         SeverityLevel.INFO,
-        `Server running in ${process.env.NODE_ENV || 'development'} environment on port
-        ${config.server.port}`,
+        `Server running in ${process.env.NODE_ENV || config.env.dev} environment on port ${
+          config.server.port
+        }`,
         'connectedToServer',
       );
     });
@@ -35,6 +38,11 @@ export class Server {
     this.app.use(bodyParser.json());
     this.app.use(bodyParser.urlencoded({ extended: true }));
     this.app.use(cookieParser());
+    this.app.use(addHeaders);
+
+    if (process.env.NODE_ENV === config.env.dev) {
+      this.app.use(morgan('dev'));
+    }
   }
 
   private initializeControllers() {

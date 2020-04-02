@@ -7,7 +7,12 @@ export const logger = winston.createLogger({ defaultMeta: { service: config.serv
 if (process.env.NODE_ENV !== 'prod') {
   logger.add(
     new winston.transports.Console({
-      format: winston.format.simple(),
+      format: winston.format.combine(
+        winston.format.timestamp({
+          format: 'YYYY-MM-DD HH:mm:ss',
+        }),
+        winston.format.json(),
+      ),
     }),
   );
 }

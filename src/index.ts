@@ -25,6 +25,7 @@ const connectToMongo = async () => {
       useCreateIndex: true,
       useNewUrlParser: true,
       useFindAndModify: false,
+      useUnifiedTopology: true,
     });
   } catch (err) {
     log(
