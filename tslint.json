@@ -2,11 +2,13 @@
   "extends": ["tslint:recommended", "tslint-config-prettier", "tslint-config-airbnb"],
   "rules": {
     "quotemark": [true, "single"],
+
     "no-console": false,
     "no-default-export": false,
     "no-increment-decrement": false,
     "import-name": false,
     "max-line-length": false,
+    "max-classes-per-file": false,
     "variable-name": [
       true,
       "ban-keywords",

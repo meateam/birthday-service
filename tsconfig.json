@@ -8,9 +8,7 @@
 
     /* Strict Type-Checking Options */
     "strict": true /* Enable all strict type-checking options. */,
-    "noImplicitThis": true /* Raise error on 'this' expressions with an implied 'any' type. */,
-
-    /* Additional Checks */
+    "noImplicitAny": true,
     "noImplicitReturns": true /* Report error when not all code paths in function return a value. */
   },
   "include": ["src/**/*.ts"],

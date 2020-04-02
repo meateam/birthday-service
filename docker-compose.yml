@@ -8,10 +8,8 @@ services:
       context: .
       dockerfile: Dockerfile
     environment:
-      DB_SERVER: mongodb://mongo-server:27017
+      DB_SERVER: mongo-server:27017
       DB_NAME: birthdayDB
-      RPC_PORT: '55555'
-      RPC_HOST: '0.0.0.0'
     depends_on:
       - mongo-server
   mongo-server:

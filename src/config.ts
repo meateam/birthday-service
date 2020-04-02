@@ -4,7 +4,7 @@ const config = {
     name: 'Birthday-Service',
   },
   db: {
-    connectionString: `${process.env.DB_SERVER || 'mongodb://localhost:27017/'}${
+    connectionString: `mongodb://${process.env.DB_SERVER || 'localhost:27017/'}${
       process.env.DB_NAME || 'birthdayDB'
     }${process.env.DB_REPLICA_NAME ? `?replicaSet=${process.env.DB_REPLICA_NAME}` : ''}`,
     port: process.env.DB_PORT || 27017,
