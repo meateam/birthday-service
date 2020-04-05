@@ -12,7 +12,12 @@ services:
       DB_NAME: birthdayDB
     depends_on:
       - mongo-server
+      - user-service
   mongo-server:
     image: 'mongo:latest'
     ports:
       - '27017:27017'
+  user-service:
+    image: 'user-service:latest'
+    ports:
+      - '8086:8080'
