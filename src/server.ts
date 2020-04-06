@@ -7,6 +7,7 @@ import { log } from './utils/logger/logger';
 import { SeverityLevel } from './utils/logger/severityLevel';
 import addHeaders from './middlewares/addHeaders.middleware';
 import * as errorhandlers from './utils/erros/errorHandlers';
+import appRouter from './router';
 
 export class Server {
   public app: express.Application;
@@ -15,8 +16,8 @@ export class Server {
     this.app = express();
 
     this.initializeMiddlewares();
-    // this.initializeControllers();
-    // this.initializeErrorHandling();
+    this.initializeErrorHandling();
+    this.initializeRouters();
   }
 
   public static bootstrap(): Server {
@@ -44,8 +45,8 @@ export class Server {
     }
   }
 
-  private initializeControllers() {
-    throw new Error('Method not implemented.');
+  private initializeRouters() {
+    this.app.use('/api', appRouter);
   }
 
   private initializeErrorHandling() {
