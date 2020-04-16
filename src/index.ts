@@ -15,11 +15,7 @@ process.on('unhandledRejection', (err) => {
 });
 
 const connectToMongo = async () => {
-  log(
-    SeverityLevel.INFO,
-    `[MongoDB] trying to mongo server:  ${config.db.connectionString}`,
-    'connectToMongo',
-  );
+  log(SeverityLevel.INFO, `[MongoDB] trying to mongo server:  ${config.db.connectionString}`, 'connectToMongo');
   try {
     await mongoose.connect(config.db.connectionString, {
       useCreateIndex: true,
@@ -28,19 +24,11 @@ const connectToMongo = async () => {
       useUnifiedTopology: true,
     });
   } catch (err) {
-    log(
-      SeverityLevel.ERROR,
-      `did not connect to ${config.db.connectionString}. error: ${err}`,
-      'connectToMongo',
-    );
+    log(SeverityLevel.ERROR, `did not connect to ${config.db.connectionString}. error: ${err}`, 'connectToMongo');
     return;
   }
 
-  log(
-    SeverityLevel.INFO,
-    `successfully connected: ${config.db.connectionString}`,
-    'connectToMongo',
-  );
+  log(SeverityLevel.INFO, `successfully connected: ${config.db.connectionString}`, 'connectToMongo');
 };
 
 (async () => {

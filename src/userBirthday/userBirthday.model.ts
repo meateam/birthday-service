@@ -8,6 +8,7 @@ const userBirthdaySchema: mongoose.Schema = new mongoose.Schema(
     lastName: { type: String, required: true },
     mail: { type: String, required: true },
     hierarchy: { type: [String], required: true },
+    hierarchyFlat: { type: String, required: false },
     birthdayDate: { type: Date, required: true },
   },
   {

@@ -25,13 +25,13 @@ export class AuthenticationError extends UserError {
 }
 
 export class NotPermittedError extends UserError {
-  constructor() {
-    super('Operation not permitted', 403);
+  constructor(message?: string) {
+    super(message || 'Operation not permitted', 403);
   }
 }
 
 export class NotFoundError extends UserError {
-  constructor() {
-    super('Resource not found', 404);
+  constructor(message?: string) {
+    super(message || 'Resource not found', 404);
   }
 }

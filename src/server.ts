@@ -5,7 +5,7 @@ import * as morgan from 'morgan';
 import config from './config';
 import { log } from './utils/logger/logger';
 import { SeverityLevel } from './utils/logger/severityLevel';
-import addHeaders from './middlewares/addHeaders.middleware';
+import addHeaders from './utils/addHeaders';
 import * as errorhandlers from './utils/erros/errorHandlers';
 import appRouter from './router';
 
@@ -16,8 +16,8 @@ export class Server {
     this.app = express();
 
     this.initializeMiddlewares();
-    this.initializeErrorHandling();
     this.initializeRouters();
+    this.initializeErrorHandling();
   }
 
   public static bootstrap(): Server {
@@ -35,10 +35,10 @@ export class Server {
   }
 
   private initializeMiddlewares() {
-    this.app.use(bodyParser.json());
-    this.app.use(bodyParser.urlencoded({ extended: true }));
-    this.app.use(cookieParser());
     this.app.use(addHeaders);
+    this.app.use(bodyParser.urlencoded({ extended: true }));
+    this.app.use(bodyParser.json());
+    this.app.use(cookieParser());
 
     if (process.env.NODE_ENV === config.env.dev) {
       this.app.use(morgan('dev'));
@@ -46,7 +46,7 @@ export class Server {
   }
 
   private initializeRouters() {
-    this.app.use('/api', appRouter);
+    this.app.use('/', appRouter);
   }
 
   private initializeErrorHandling() {

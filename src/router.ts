@@ -7,6 +7,6 @@ const appRouter: Router = Router();
 appRouter.get('/isalive', (req, res, next) => {
   res.send('alive');
 });
-// AppRouter.use('/api/user', userBirthdayRouter);
+appRouter.use('/api/birthday', userBirthdayRouter);
 
 export default appRouter;

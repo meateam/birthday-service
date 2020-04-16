@@ -1,8 +1,5 @@
-export interface IUserBirthday {
-  id: string;
-  firstName: string;
-  lastName: string;
-  mail?: string;
-  hierarchy: string[];
+import { IPerson } from '../person/person.interface';
+
+export interface IUserBirthday extends IPerson {
   birthdayDate: Date;
 }

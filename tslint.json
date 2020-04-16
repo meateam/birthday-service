@@ -2,21 +2,15 @@
   "extends": ["tslint:recommended", "tslint-config-prettier", "tslint-config-airbnb"],
   "rules": {
     "quotemark": [true, "single"],
-
+    "semicolon": [true, "always", "strict-bound-class-methods"],
     "no-console": false,
     "no-default-export": false,
     "no-increment-decrement": false,
+    "no-unsafe-any": false,
     "import-name": false,
     "max-line-length": false,
     "max-classes-per-file": false,
-    "variable-name": [
-      true,
-      "ban-keywords",
-      "check-format",
-      "allow-snake-case",
-      "allow-leading-underscore",
-      "allow-pascal-case"
-    ]
+    "variable-name": [true, "ban-keywords", "check-format", "allow-snake-case", "allow-leading-underscore", "allow-pascal-case"]
   },
   "ter-prefer-arrow-callback": false
 }
